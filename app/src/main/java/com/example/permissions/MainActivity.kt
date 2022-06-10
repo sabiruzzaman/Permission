@@ -2,10 +2,12 @@ package com.example.permissions
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         val requestPermissionBtn: Button = findViewById(R.id.requestPermissionBtnId)
         requestPermissionBtn.setOnClickListener {
-            requestPermissionBtn
+            requestPermission()
+
         }
 
     }
@@ -40,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun requestPermission() {
-        var permissionToRequest = mutableListOf<String>()
+        val permissionToRequest = mutableListOf<String>()
         if (!hasWriteExternalStoragePermission()) {
             permissionToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
@@ -52,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             permissionToRequest.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         }
 
-        if (!permissionToRequest.isNotEmpty()) {
+        if (permissionToRequest.isEmpty()) {
             ActivityCompat.requestPermissions(this, permissionToRequest.toTypedArray(), 0)
         }
 
