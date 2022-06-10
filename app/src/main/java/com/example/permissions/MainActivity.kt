@@ -2,12 +2,10 @@ package com.example.permissions
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 
 class MainActivity : AppCompatActivity() {
